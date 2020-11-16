@@ -1,0 +1,16 @@
+﻿1. open PowerShel as Administrator and run this command:
+	$todaydt = Get-Date
+	$10years = $todaydt.AddYears(10)
+	New-SelfSignedCertificate -dnsname verifyer.co.il -notafter $10years -CertStoreLocation cert:\LocalMachine\My
+
+2. Go to Certificate Manager and export the certificate as pfx file
+	choose with the private key option
+	name the file as Verifyer.pfx
+	set password "12345" etc..
+3. open cmd and run this command:
+	openssl pkcs12 -in Verifyer.pfx -nocerts -out keypair.key
+4. and then run this command:
+	openssl rsa -in keypair.key -pubout -out public.key
+5. and then run this command:
+	openssl pkcs12 -info -in Verifyer.pfx -nodes -out private.key
+6. copy the private.key to the signer and the public.key to the client
