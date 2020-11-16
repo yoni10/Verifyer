@@ -9,7 +9,7 @@ Tool to sign and validating tokens
     $todaydt = Get-Date
     $10years = $todaydt.AddYears(10)
     New-SelfSignedCertificate -dnsname verifyer.co.il -notafter $10years -CertStoreLocation cert:\LocalMachine\My
-      ```
+    ```
 - Go to Certificate Manager and export the certificate as pfx file
   - choose with the private key option
   - name the file as Verifyer.pfx
